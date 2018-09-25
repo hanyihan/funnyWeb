@@ -1,0 +1,62 @@
+/*logo start*/
+
+#head .headmain {
+	width: 1100px;
+	height: 80px;
+	margin: 0 auto;
+	position: relative;
+}
+
+#head .headmain .logo {
+	float: left;
+	margin-top: 30px;
+	
+}
+
+#head .headmain .nav {
+	float: right;
+	margin-top: 50px;
+}
+
+#head .headmain .nav .list>li {
+	float: left;
+	margin-left: 40px;
+	position: relative;
+	
+}
+
+#head .headmain .nav .list>li .up {
+	position: absolute;
+	color: #000;
+	width: 0;
+	overflow: hidden;
+	transition: 1s width;
+}
+
+#head .headmain .nav .list>li:hover .up {
+	width: 100%;
+}
+
+
+#head .headmain .arrow {
+	width: 21px;
+	height: 11px;
+	background: url(../img/menuIndicator.png);
+	position: absolute;
+	left: 50%;
+	bottom: -11px;
+	transition:1s left;
+}
+
+.content {
+	height: 800px;
+	background-color: dimgray;
+}
+
+
+
+
+
+
+
+
