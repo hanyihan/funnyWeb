@@ -48,10 +48,45 @@
 	transition:1s left;
 }
 
-.content {
-	height: 800px;
+#content {
+	width: 100%;
 	background-color: dimgray;
+	height: 300px;
+	
 }
+
+
+
+#content .list > li {
+	position: relative;
+
+}
+
+#content .list > li > div {
+	width: 1100px;
+	height: 520px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: palevioletred;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
