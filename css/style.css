@@ -33,7 +33,7 @@
 	transition: 1s width;
 }
 
-#head .headmain .nav .list>li:hover .up {
+#head .headmain .nav > .list>li:hover .up {
 	width: 100%;
 }
 
@@ -51,18 +51,26 @@
 #content {
 	width: 100%;
 	background-color: dimgray;
-	height: 300px;
+	position: relative;
+	overflow: hidden;
 	
 }
 
+#content>.list {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	transition: 1s top;
+	
+}
 
-
-#content .list > li {
+#content>.list > li {
 	position: relative;
 
 }
 
-#content .list > li > div {
+#content>.list > li > section {
 	width: 1100px;
 	height: 520px;
 	position: absolute;
@@ -71,8 +79,290 @@
 	right: 0;
 	bottom: 0;
 	margin: auto;
-	background-color: palevioletred;
 }
+
+.home {
+	background: url(../img/bg1.jpg) no-repeat;
+}
+
+.course {
+	background: url(../img/bg2.jpg) no-repeat;
+}
+
+.works {
+	background: url(../img/bg3.jpg) no-repeat;
+}
+
+.about {
+	background: url(../img/bg4.jpg) no-repeat;
+}
+
+.team {
+	background: url(../img/bg5.jpg) no-repeat;
+}
+
+/*通用标题*/
+.commonTitle {
+	font-size: 80px;
+	color: #009ee0;
+	font-weight: bold;
+	letter-spacing: -5px;
+	line-height: 0.8;
+}
+
+/*第二屏*/
+#content .list .course .course1 {
+	margin: 50px 0 50px 50px;
+}
+
+#content .list .course .course2 {
+	width: 400px;
+	height: 300px;
+	margin-left: 50px;
+	color: #fff;
+	font-size: 14px;
+	text-align: justify;
+}
+
+#content .list .course .course3 {
+	width: 480px;
+	position: absolute;
+	top: 70px;
+	right: 50px;
+}
+
+#content .list .course .course3 span.line {
+	width: 9px;
+	height: 410px;
+	position: absolute;
+	top: -7px;
+	background: url(../img/plus_row.png) no-repeat;
+}
+
+#content>.list>.course .course3 .line:nth-of-type(1) {
+	left: -5px;
+}
+
+#content>.list>.course .course3 .line:nth-of-type(2) {
+	left: 115px;
+}
+
+#content>.list>.course .course3 .line:nth-of-type(3) {
+	left: 235px;
+}
+
+#content>.list>.course .course3 .line:nth-of-type(4) {
+	left: 355px;
+}
+
+#content>.list>.course .course3 .line:nth-of-type(5) {
+	left: 475px;
+}
+
+#content>.list>.course .course3 .item {
+	width: 120px;
+	height: 132px;
+	float: left;
+	position: relative;
+	perspective: 500;
+	transform-style: preserve-3d;
+}
+
+#content>.list>.course .course3 .item .backFace,
+#content>.list>.course .course3 .item .face {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	transition: 1s transform;
+	padding: 15px;
+	color: #fff;
+
+}
+
+#content>.list>.course .course3 .item .backFace {
+	background-position: 50% 50% !important;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(1) .backFace {
+	background: url(../img/apcoa.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(2) .backFace {
+	background: url(../img/apcoa.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(3) .backFace {
+	background: url(../img/bks.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(4) .backFace {
+	background: url(../img/gu.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(5) .backFace {
+	background: url(../img/hlx.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(6) .backFace {
+	background: url(../img/lbs.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(7) .backFace {
+	background: url(../img/leonberg.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(8) .backFace {
+	background: url(../img/pcwelt.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(9) .backFace {
+	background: url(../img/tata.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(10) .backFace {
+	background: url(../img/bks.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(11) .backFace {
+	background: url(../img/bks.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item:nth-of-type(12) .backFace {
+	background: url(../img/bks.png) no-repeat;
+}
+
+#content>.list>.course .course3 .item .face {
+	transform: rotateY(180deg);
+	backface-visibility: hidden;
+	background: #009ee0;
+}
+
+#content>.list>.course .course3 .item:hover .face {
+	transform: rotateY(360deg);
+}
+
+#content>.list>.course .course3 .item:hover .backFace {
+	transform: rotateY(180deg);
+}
+/*第三屏*/
+
+#content .list .works .work1 {
+	margin: 50px 0 100px 50px;
+	
+}
+
+#content .list .works .work2 {
+	margin-left: 50px;
+}
+
+#content .list .works .work2 .item {
+	float: left;
+	width: 220px;
+	height: 133px;
+	position: relative;
+	margin:0 1px;
+	overflow: hidden;
+}
+
+#content .list .works .work2 .item:last-child {
+	width: 332px;
+}
+
+#content .list .works .work2 .item .mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	box-sizing: border-box;
+	padding: 10px;
+	background-color: #000000;
+	opacity: 0;
+	color: #fff;
+	transition: 1s opacity;
+}
+
+#content .list .works .work2 .item img {
+	transition: 1s transform;
+}
+
+#content .list .works .work2 .item .mask .icon {
+	width: 32px;
+	height: 34px;
+	margin: 0 auto;
+	background: url(../img/zoomico.png) no-repeat;
+	transition: 1s background-position;
+	margin-top: 10px;
+}
+
+#content .list .works .work2 .item:hover .mask {
+	opacity: 0.8;
+}
+
+#content .list .works .work2 .item:hover img {
+	transform: rotate(30deg) scale(1.5);
+}
+
+#content .list .works .work2 .item .mask .icon:hover {
+	background-position: 0 -35px;
+}
+
+#content .list .works .work3 {
+	width: 166px;
+	height: 190px;
+	position: absolute;
+	top: 170px;
+	left: 900px;
+	background: url(../img/robot.png) no-repeat;
+	animation: work3Move 4s linear infinite;
+}
+
+@-moz-keyframes work3Move{
+	0% {
+		transform: translateX(0) rotateY(0deg);
+	}
+	49% {
+		transform: translateX(-495px) rotateY(0deg);
+	}
+	50% {
+		transform: translateX(-500px) rotateY(180deg);
+	}
+	100% {
+		transform: translateX(0) rotateY(180deg);
+	}
+}
+
+@-webkit-keyframes work3Move{
+	0% {
+		transform: translateX(0) rotateY(0deg);
+	}
+	49% {
+		transform: translateX(-495px) rotateY(0deg);
+	}
+	50% {
+		transform: translateX(-500px) rotateY(180deg);
+	}
+	100% {
+		transform: translateX(0) rotateY(180deg);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
