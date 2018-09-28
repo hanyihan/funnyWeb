@@ -102,7 +102,6 @@ window.onload=function(){
 			
 		}
 	}
-	move(1);
 	
 	//up 切换 和 移动arrow
 	function move (index){

@@ -110,6 +110,73 @@
 	line-height: 0.8;
 }
 
+/*第一屏*/
+
+#content .list .home .home1 {
+	width: 100%;
+	height: 100%;
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+
+#content .list .home .home1 li{
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	visibility: hidden;
+}
+
+#content .list .home .home1 li:nth-child(1) {
+	background: #dc6c5f;;
+}
+
+#content .list .home .home1 li:nth-child(2) {
+	background: #95dc84;;
+}
+
+#content .list .home .home1 li:nth-child(3) {
+	background: #64b9d2;;
+}
+
+#content .list .home .home1 li:nth-child(4) {
+	background: #000000;;
+}
+
+#content .list .home .home1 li div {
+	color: #fff;
+	text-align: center;
+	margin-top: 200px;
+}
+
+#content .list .home .home1 li.active {
+	visibility: visible;
+}
+
+#content .list .home .home2 {
+	width: 100%;
+	height: 20px;
+	position: absolute;
+	bottom: 8px;
+	text-align: center;
+}
+
+#content .list .home .home2 li {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	display: inline-block;
+	background: rgba(255,255,255,0.5);
+	box-shadow: 0 0 4px rgba(25,25,25,0.8);
+}
+
+#content .list .home .home2 li.on {
+	background-color: #fff;
+	cursor: default;
+}
+
+
 /*第二屏*/
 #content .list .course .course1 {
 	margin: 50px 0 50px 50px;
