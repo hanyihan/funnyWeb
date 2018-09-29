@@ -46,6 +46,7 @@
 	left: 50%;
 	bottom: -11px;
 	transition:1s left;
+	z-index: 99;
 }
 
 #content {
@@ -154,6 +155,111 @@
 	visibility: visible;
 }
 
+#content .list .home .home1 li.lefthide {
+	visibility: hidden;
+	animation: 1.5s lefthide 1 linear;
+	
+}
+
+#content .list .home .home1 li.rightshow {
+	visibility: visible;
+	animation: 1.5s rightshow 1 linear;
+	
+}
+
+#content .list .home .home1 li.leftshow {
+	visibility: visible;
+	animation: 1.5s leftshow 1 linear;
+	
+}
+
+#content .list .home .home1 li.righthide {
+	visibility: hidden;
+	animation: 1.5s righthide 1 linear;
+	
+}
+
+@-webkit-keyframes lefthide{
+	0% {
+		visibility: visible;
+	}
+	50% {
+		transform: translateX(-40%) rotateY(30deg) scale(.8);
+	}
+	100% {
+		transform: translateZ(-200px);
+		visibility: hidden;
+	}
+}
+
+@keyframes lefthide{
+	0% {
+		visibility: visible;
+	}
+	50% {
+		transform: translateX(-40%) rotateY(30deg) scale(.8);
+	}
+	100% {
+		transform: translateZ(-200px);
+		visibility: hidden;
+	}
+}
+
+@-webkit-keyframes rightshow{
+	0% {
+		visibility: hidden;
+		transform: translateZ(-200px);
+	}
+	50% {
+		transform: translateX(40%) rotateY(-30deg) scale(.8);
+	}
+	100% {
+		
+		visibility: visible;
+	}
+}
+
+@keyframes rightshow{
+	0% {
+		visibility: hidden;
+		transform: translateZ(-200px);
+	}
+	50% {
+		transform: translateX(40%) rotateY(-30deg) scale(.8);
+	}
+	100% {
+		
+		visibility: visible;
+	}
+}
+
+@-webkit-keyframes leftshow{
+	0% {
+		visibility: hidden;
+		transform: translateZ(-200px);
+	}
+	50% {
+		transform: translateX(-40%) rotateY(30deg) scale(.8);
+	}
+	100% {
+		
+		visibility: visible;
+	}
+}
+
+@-webkit-keyframes righthide{
+	0% {
+		visibility: visible;
+	}
+	50% {
+		transform: translateX(40%) rotateY(-30deg) scale(.8);
+	}
+	100% {
+		transform: translateZ(-200px);
+		visibility: hidden;
+	}
+}
+
 #content .list .home .home2 {
 	width: 100%;
 	height: 20px;
@@ -169,6 +275,7 @@
 	display: inline-block;
 	background: rgba(255,255,255,0.5);
 	box-shadow: 0 0 4px rgba(25,25,25,0.8);
+	cursor:pointer;
 }
 
 #content .list .home .home2 li.on {
