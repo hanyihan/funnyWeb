@@ -13,20 +13,185 @@ window.onload=function(){
 	var cliNodes = document.querySelectorAll("#content .list > li");
 	var clist = document.querySelector('#content .list');
 	
+	var aboutUL = document.querySelectorAll("#content .list .about .about3 .item>ul");
+	
 	//第一屏
 	var home1liNodes =  document.querySelectorAll("#content .list .home .home1 > li");
 	var home2liNodes =  document.querySelectorAll("#content .list .home .home2 > li");
 	var home1 = document.querySelector("#content .list .home .home1");
 	
+	//第五屏
+	var team3 = document.querySelector("#content .list .team .team3");
+	var team3Ul = team3.querySelector("ul");
+	var team3Lis = team3Ul.querySelectorAll("li");
 	
+	//右侧dot
+	var dots = document.querySelectorAll(".dot>li");
+	
+	//当前显示的那个
 	var now = 0;
 	var timer = 0;
 	
+	//3D转换
 	var oldIndex = 0;
 	var timer3D = "dhaoengha";
 	var autoIndex = 0;
 	
+	//第五屏气泡效果
+	pop();
+	function pop() {
+		var oc = null;
+		var timer1 = 0;
+		var timer2 = 0;
+		for(var i = 0; i < team3Lis.length; i++) {
+			team3Lis[i].onmouseenter = function() {
+				for(var j = 0; j < team3Lis.length; j++) {
+					team3Lis[j].style.opacity = 0.2;
+				}
+				this.style.opacity = 1;
+				addCanvas();
+				oc.style.left = this.offsetLeft + 'px';
+			}
+		}
+		
+		function addCanvas() {
+			if(!oc) {
+				oc = document.createElement("canvas");
+				oc.width = team3Lis[0].offsetWidth;
+				oc.height = team3Lis[0].offsetHeight * 2 / 3;
+				
+				team3.onmouseleave = function(){
+					for(var k = 0; k < team3Lis.length; k++) {
+						team3Lis[k].style.opacity = 1;
+					}
+					removeCanvas();
+					
+				}
+				
+				team3.appendChild(oc);
+				Qipao();
+			}
+		}
+		
+		function removeCanvas(){
+			oc.remove();
+			oc = null;
+			clearInterval(timer1);
+			clearInterval(timer2);
+			
+		}
+		
+		function Qipao() {
+			if(oc.getContext) {
+				var ctx = oc.getContext("2d");
+		
+				var arr = [];
+		
+				//将数组中的圆绘制到画布上
+				timer1 = setInterval(function() {
+					ctx.clearRect(0, 0, oc.width, oc.height);
+					//动画
+					for(var i = 0; i < arr.length; i++) {
+						arr[i].deg += 10;
+						arr[i].x = arr[i].startX + Math.sin(arr[i].deg * Math.PI / 180) * arr[i].step * 2;
+						arr[i].y = arr[i].startY - (arr[i].deg * Math.PI / 180) * arr[i].step;
+		
+						if(arr[i].y <= 50) {
+							arr.splice(i, 1)
+						}
+					}
+		
+					//绘制
+					for(var i = 0; i < arr.length; i++) {
+						ctx.save();
+						ctx.fillStyle = "rgba(" + arr[i].red + "," + arr[i].green + "," + arr[i].blue + "," + arr[i].alp + ")";
+						ctx.beginPath();
+						ctx.arc(arr[i].x, arr[i].y, arr[i].r, 0, 2 * Math.PI);
+						ctx.fill();
+						ctx.restore();
+					}
+				}, 1000 / 60)
+		
+				//往arr中注入随机圆的信息
+				timer2 = setInterval(function() {
+					var r = Math.random() * 6 + 2;
+					var x = Math.random() * oc.width;
+					var y = oc.height - r;
+					var red = Math.round(Math.random() * 255);
+					var green = Math.round(Math.random() * 255);
+					var blue = Math.round(Math.random() * 255);
+					var alp = 1;
+		
+					var deg = 0;
+					var startX = x;
+					var startY = y;
+					//曲线的运动形式
+					var step = Math.random() * 20 + 10;
+					arr.push({
+						x: x,
+						y: y,
+						r: r,
+						red: red,
+						green: green,
+						blue: blue,
+						alp: alp,
+						deg: deg,
+						startX: startX,
+						startY: startY,
+						step: step
+					})
+				}, 50)
+			}
+		}
+	}
 	
+	
+	
+	
+	//第四屏图片切换
+	picBoom();
+	function picBoom(){
+		for(var i = 0; i < aboutUL.length; i++) {
+			change(aboutUL[i]);
+		}
+		
+		function change(UL) {
+			var src = UL.dataset.src;
+			var w = UL.offsetWidth/2;
+			var h = UL.offsetHeight/2;
+			for(var i =0; i<4; i++) {
+				var liNodes = document.createElement("li");
+				liNodes.style.width = w + 'px';
+				liNodes.style.height = h + 'px';
+				var imgNode = document.createElement("img");
+				
+				imgNode.style.left = -(i%2)*w + 'px';
+				imgNode.style.top = -Math.floor(i/2)*h + 'px';
+				imgNode.src = src;
+				
+				liNodes.appendChild(imgNode);
+				UL.appendChild(liNodes);
+				
+				UL.onmouseenter = function() {
+					var imgNodes = this.querySelectorAll("li>img");
+					
+					imgNodes[0].style.top = h + 'px';
+					imgNodes[1].style.left = -2*w + 'px';
+					imgNodes[2].style.left = w + 'px';
+					imgNodes[3].style.top = -2*h + 'px';
+				}
+				
+				UL.onmouseleave = function() {
+					var imgNodes = this.querySelectorAll("li>img");
+					
+					imgNodes[0].style.top = 0 + 'px';
+					imgNodes[1].style.left = -w + 'px';
+					imgNodes[2].style.left = 0 + 'px';
+					imgNodes[3].style.top = -h + 'px';
+				}
+			}
+		}
+	}
 	
 	//第一屏点击切换
 	home3D();
@@ -207,7 +372,13 @@ window.onload=function(){
 				now = this.index;
 			}
 			
-			
+		}
+		for(var i =0; i < dots.length; i++) {
+			dots[i].index = i;
+			dots[i].onclick = function(){
+				move(this.index);
+				now = this.index;
+			}
 		}
 	}
 	
@@ -219,5 +390,11 @@ window.onload=function(){
 		upNodes[index].style.width = '100%';
 		arrow.style.left = liNodes[index].offsetLeft + liNodes[index].offsetWidth / 2 - arrow.offsetWidth / 2 + 'px';
 		clist.style.top = -index*(document.documentElement.clientHeight - head.offsetHeight)+"px";
+		
+		for(var k = 0; k < dots.length; k++) {
+			dots[k].className = "";
+		}
+		
+		dots[index].className = "active";
 	}
 }

@@ -111,6 +111,14 @@
 	line-height: 0.8;
 }
 
+.commonText {
+
+	margin-left: 50px;
+	color: #fff;
+	font-size: 14px;
+	text-align: justify;
+}
+
 /*第一屏*/
 
 #content .list .home .home1 {
@@ -525,28 +533,167 @@
 }
 
 
+/*第四屏*/
+#content .list .about .about1 {
+	margin: 50px 0 100px 50px;
+}
+
+#content .list .about .about2 {
+	width: 400px;
+}
+
+#content .list .about .about4 {
+	width: 357px;
+	height: 998px;
+	position: absolute;
+	top: -100px;
+	left: 50%;
+	background: url(../img/greenLine.png) no-repeat;
+}
+
+#content .list .about .about3 .item {
+	width: 260px;
+	height: 200px;
+	border: 5px solid rgba(255,255,255,.5);
+	border-radius: 8px;
+	z-index: 2;
+	position: absolute;
+	overflow: hidden;
+	
+}
+
+#content .list .about .about3 .item:nth-child(1) {
+	left: 750px;
+	top: 50px;
+}
+
+#content .list .about .about3 .item:nth-child(2) {
+	left: 600px;
+	top: 290px;
+}
+
+#content .list .about .about3 .item span ,#content .list .about .about3 .item ul {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#content .list .about .about3 .item:nth-child(1) span {
+	background: url(../img/about2.jpg) no-repeat;
+	transform: scale(1.5);
+	transition: 1s transform;
+}
 
 
+#content .list .about .about3 .item:nth-child(2) span {
+	background: url(../img/about4.jpg) no-repeat;
+	transform: scale(1.5);
+	transition: 1s transform;
+}
+
+#content .list .about .about3 .item:hover span {
+	transform: scale(1);
+}
 
 
+#content .list .about .about3 .item ul li {
+	float: left;
+	position: relative;
+	overflow: hidden;
+}
+
+#content .list .about .about3 .item ul li img {
+	position: absolute;
+	transition: 1s top,1s left;
+}
+
+/*右侧对应dot*/
+#content .dot {
+	position: fixed;
+	top: 50%;
+	right: 10px;
+}
+
+#content .dot li {
+	width: 14px;
+	height: 14px;
+	border: 2px solid #DC6C5F;
+	border-radius: 50%;
+	margin-top: 12px;
+}
+
+#content .dot li.active {
+	background-color: rgba(255,255,255,.7);
+}
+
+/*第五屏 team*/
+
+#content .list .team .team1 {
+	width: 400px;
+	margin: 50px;
+	float: left;
+}
 
 
+#content .list .team .team2 {
+	width: 400px;
+	margin: 50px;
+	float: right;
+}
 
+#content .list .team .team3 {
+	width: 944px;
+	height: 448px;
+	position: absolute;
+	left: 50%;
+	margin-left: -472px;
+	top: 250px;
+}
 
+#content .list .team .team3 ul {
+	position: relative;
+	height: 100%;
+}
 
+#content .list .team .team3 ul li {
+	float: left;
+	width: 118px;
+	height: 100%;
+	background: url(../img/team.png) no-repeat;
+	transition: 1s opacity;
+}
 
+#content .list .team .team3 ul li:nth-child(1) {
+	background-position: 0 0;
+}
+#content .list .team .team3 ul li:nth-child(2) {
+	background-position: -118px 0;
+}
+#content .list .team .team3 ul li:nth-child(3) {
+	background-position: -236px 0;
+}
+#content .list .team .team3 ul li:nth-child(4) {
+	background-position: -354px 0;
+}
+#content .list .team .team3 ul li:nth-child(5) {
+	background-position: -472px 0;
+}
+#content .list .team .team3 ul li:nth-child(6) {
+	background-position: -590px 0;
+}
+#content .list .team .team3 ul li:nth-child(7) {
+	background-position: -708px 0;
+}
+#content .list .team .team3 ul li:nth-child(8) {
+	background-position: -826px 0;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+#content .list .team .team3 canvas {
+	position: absolute;
+	top: 0;
+}
 
 
 
