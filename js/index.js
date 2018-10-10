@@ -32,10 +32,91 @@ window.onload=function(){
 	var now = 0;
 	var timer = 0;
 	
+	//显示的上一个
+	var prevIndex = 0;
+	
 	//3D转换
 	var oldIndex = 0;
 	var timer3D = "dhaoengha";
 	var autoIndex = 0;
+	
+	
+	//每一屏出入场动画
+	 var anArr = [
+	 //第一屏
+	 	{
+	 		inAn:function(){
+	 			var home2 = document.querySelector("#content .list .home .home2");
+	 			
+	 			home1.style.transform = "translateY(0)";
+	 			home2.style.transform = "translateY(0)";
+	 			home1.style.opacity = 1;
+	 			home2.style.opacity = 1;
+	 		},
+	 		outAn:function(){
+	 			var home2 = document.querySelector("#content .list .home .home2");
+	 			
+	 			home1.style.transform = "translateY(-400px)";
+	 			home2.style.transform = "translateY(100px)";
+	 			home1.style.opacity = 0;
+	 			home2.style.opacity = 0;
+	 		}
+	 	},
+	 	//第二屏
+	 	{
+	 		inAn:function(){
+	 			var plane1 = document.querySelector("#content .list .course .plane1");
+	 			var plane2 = document.querySelector("#content .list .course .plane2");
+	 			var plane3 = document.querySelector("#content .list .course .plane3");
+	 			
+	 			plane1.style.transform = "translate(0px,0px)";
+	 			plane2.style.transform = "translate(0px,0px)";
+	 			plane3.style.transform = "translate(0px,0px)";
+	 		},
+	 		outAn:function(){
+	 			var plane1 = document.querySelector("#content .list .course .plane1");
+	 			var plane2 = document.querySelector("#content .list .course .plane2");
+	 			var plane3 = document.querySelector("#content .list .course .plane3");
+	 			
+	 			plane1.style.transform = "translate(-200px,-200px)";
+	 			plane2.style.transform = "translate(-200px,200px)";
+	 			plane3.style.transform = "translate(200px,-200px)";
+	 			
+	 		}
+	 	},
+	 	{
+	 		inAn:function(){
+	 			
+	 		},
+	 		outAn:function(){
+	 			
+	 		}
+	 	},
+	 	{
+	 		inAn:function(){
+	 			
+	 		},
+	 		outAn:function(){
+	 			
+	 		}
+	 	},
+	 	{
+	 		inAn:function(){
+	 			
+	 		},
+	 		outAn:function(){
+	 			
+	 		}
+	 	}
+	 ];
+	 
+	 for(var i = 0;i < anArr.length; i++ ) {
+	 	anArr[i].outAn();
+	 }
+	 
+	 setTimeout(function(){
+	 	anArr[0].inAn();
+	 },2000)
 	
 	//第五屏气泡效果
 	pop();
@@ -333,6 +414,7 @@ window.onload=function(){
 			dir = ev.detail < 0? "up" : "down";
 		}
 		
+		prevIndex = now;
 		switch(dir) {
 			case "up":
 				if(now > 0) {
@@ -368,6 +450,7 @@ window.onload=function(){
 		for(var i = 0; i < liNodes.length; i++) {
 			liNodes[i].index = i;
 			liNodes[i].onclick = function() {
+				prevIndex = now;
 				move(this.index);
 				now = this.index;
 			}
@@ -376,6 +459,7 @@ window.onload=function(){
 		for(var i =0; i < dots.length; i++) {
 			dots[i].index = i;
 			dots[i].onclick = function(){
+				prevIndex = now;
 				move(this.index);
 				now = this.index;
 			}
@@ -396,5 +480,15 @@ window.onload=function(){
 		}
 		
 		dots[index].className = "active";
+		
+		
+		//出入场函数判断执行
+		if(anArr[index] && typeof anArr[index]["inAn"] === "function") {
+			anArr[index]["inAn"]();
+		}
+		
+		if(anArr[prevIndex] && typeof anArr[prevIndex]["outAn"] === "function") {
+			anArr[prevIndex]["outAn"]();
+		}
 	}
 }
