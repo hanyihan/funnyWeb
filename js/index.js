@@ -25,6 +25,15 @@ window.onload=function(){
 	var team3Ul = team3.querySelector("ul");
 	var team3Lis = team3Ul.querySelectorAll("li");
 	
+	//音频控制
+	var music = document.querySelector("#head .headmain .music");
+	var audio1 = document.querySelector("#head .headmain .music audio");
+	
+	//开机动画
+	var mask = document.querySelector("#mask");
+	var maskMain = document.querySelectorAll("#mask div"); 
+	var maskLine = document.querySelector("#mask .line"); 
+	
 	//右侧dot
 	var dots = document.querySelectorAll(".dot>li");
 	
@@ -40,6 +49,45 @@ window.onload=function(){
 	var timer3D = "dhaoengha";
 	var autoIndex = 0;
 	
+	var imgArr = ['bg1.jpg','bg2.jpg','bg3.jpg','bg4.jpg','bg5.jpg','about1.jpg','about2.jpg','about3.jpg','about4.jpg','worksimg1.jpg','worksimg2.jpg','worksimg3.jpg','worksimg4.jpg','team.png','greenLine.png'];
+	var flag = 0;
+	for(var m = 0; m < imgArr.length; m++) {
+		var img = new Image();
+		img.src = "img/" + imgArr[m];
+		img.onload = function(){
+			flag++;
+			maskLine.style.width = flag / imgArr.length * 100 +"%" ;
+		}
+	}
+	
+	maskLine.addEventListener("transitionend", function(){
+		if(flag === imgArr.length) {
+			for(var n = 0; n < maskMain.length; n++) {
+				maskMain[n].style.height = 0 + "px";
+			}
+			this.style.display = "none";
+		}
+	})
+	
+	maskMain[0].addEventListener("transitionend",function(){
+		mask.remove();
+		home3D();
+		audio1.play();
+	})
+	
+	
+	
+	//音频控制
+	music.onclick = function(){
+		if(audio1.paused){
+			audio1.play();
+			music.style.background = "url(img/musicon.gif)";
+		}
+		else {
+			audio1.pause();
+			music.style.background = "url(img/musicoff.gif)";
+		}
+	}
 	
 	//每一屏出入场动画
 	 var anArr = [
@@ -84,28 +132,68 @@ window.onload=function(){
 	 			
 	 		}
 	 	},
+	 	//第三屏
 	 	{
 	 		inAn:function(){
+	 			var pencel1 = document.querySelector("#content .list .works .pencel1");
+	 			var pencel2 = document.querySelector("#content .list .works .pencel2");
+	 			var pencel3 = document.querySelector("#content .list .works .pencel3");
 	 			
+	 			pencel1.style.transform = "translate(0px,0px)";
+	 			pencel2.style.transform = "translate(0px,0px)";
+	 			pencel3.style.transform = "translate(0px,0px)";
+	 			
+	 			pencel1.style.opacity = 1;
+	 			pencel2.style.opacity = 1;
+	 			pencel3.style.opacity = 1;
 	 		},
 	 		outAn:function(){
+	 			var pencel1 = document.querySelector("#content .list .works .pencel1");
+	 			var pencel2 = document.querySelector("#content .list .works .pencel2");
+	 			var pencel3 = document.querySelector("#content .list .works .pencel3");
+	 			
+	 			pencel1.style.transform = "translate(0px,-100px)";
+	 			pencel2.style.transform = "translate(-100px,0px)";
+	 			pencel3.style.transform = "translate(0px,100px)";
+	 			
+	 			pencel1.style.opacity = 0;
+	 			pencel2.style.opacity = 0;
+	 			pencel3.style.opacity = 0;
+	 		}
+	 	},
+	 	//第四屏
+	 	{
+	 		inAn:function(){
+	 			var Reac1 = document.querySelector("#content .list .about .about3 .item:nth-child(1)");
+	 			var Reac2 = document.querySelector("#content .list .about .about3 .item:nth-child(2)");
+	 			
+	 			Reac1.style.transform = "rotate(0deg)";
+	 			Reac2.style.transform = "rotate(0deg)";
+	 		},
+	 		outAn:function(){
+	 			var Reac1 = document.querySelector("#content .list .about .about3 .item:nth-child(1)");
+	 			var Reac2 = document.querySelector("#content .list .about .about3 .item:nth-child(2)");
+	 			
+	 			Reac1.style.transform = "rotate(45deg)";
+	 			Reac2.style.transform = "rotate(-45deg)";
 	 			
 	 		}
 	 	},
 	 	{
 	 		inAn:function(){
+	 			var team1 = document.querySelector("#content .list .team .team1");
+	 			var team2 = document.querySelector("#content .list .team .team2");
 	 			
+	 			
+	 			team1.style.transform = "translateX(0)";
+	 			team2.style.transform = "translateX(0)";
 	 		},
 	 		outAn:function(){
+	 			var team1 = document.querySelector("#content .list .team .team1");
+	 			var team2 = document.querySelector("#content .list .team .team2");
 	 			
-	 		}
-	 	},
-	 	{
-	 		inAn:function(){
-	 			
-	 		},
-	 		outAn:function(){
-	 			
+	 			team1.style.transform = "translateX(-200px)";
+	 			team2.style.transform = "translateX(200px)";
 	 		}
 	 	}
 	 ];
@@ -116,7 +204,7 @@ window.onload=function(){
 	 
 	 setTimeout(function(){
 	 	anArr[0].inAn();
-	 },2000)
+	 },1000)
 	
 	//第五屏气泡效果
 	pop();
@@ -275,7 +363,7 @@ window.onload=function(){
 	}
 	
 	//第一屏点击切换
-	home3D();
+//	home3D();
 	function home3D() {
 		for(var i = 0; i < home2liNodes.length; i++) {
 			home2liNodes[i].index = i;
@@ -487,7 +575,7 @@ window.onload=function(){
 			anArr[index]["inAn"]();
 		}
 		
-		if(anArr[prevIndex] && typeof anArr[prevIndex]["outAn"] === "function") {
+		if(anArr[prevIndex] && typeof anArr[prevIndex]["inAn"] === "function") {
 			anArr[prevIndex]["outAn"]();
 		}
 	}
